@@ -21,9 +21,9 @@ En conséquence, certains prétraitements sont nécessaires pour corriger ces im
 
 | Image 1 | Image 2 |
 |---------|---------|
-| ![Description de l'image 1](chemin/vers/image1.jpg) | ![Description de l'image 2](chemin/vers/image2.jpg) |
+|![01](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/d01ec29d-9df2-41f7-9340-7484b6be00c8) | ![02](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/50ca245a-a20d-4e17-9558-53a8ef2aece7)|
 | Image 3 | Image 4 |
-| ![Description de l'image 3](chemin/vers/image3.jpg) | ![Description de l'image 4](chemin/vers/image4.jpg) |
+| ![03](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/9bda39ca-c4b0-4160-b710-bd29eb7bec0a) | ![04](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/4df7d170-9e68-4fa4-8d45-8eb6eb56e278)|
 
 </center>
 
@@ -193,7 +193,7 @@ Enfin, la fonction totalise la valeur de chaque pièce de monnaie détectée en 
 
 | Image 1 | Image 2 | Image 3 |
 |---------|---------|---------|
-| ![Description de l'image 1](chemin/vers/image1.jpg) | ![Description de l'image 2](chemin/vers/image2.jpg) |![Description de l'image 2](chemin/vers/image2.jpg) |
+| ![Sans titre](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/c0a0e9a6-7c91-4a96-a0e7-9076facbf9e1) | ![Sans titre-1](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/99ba81ec-1be1-4cb8-9f0c-5f0c15f19259)| ![Sans titre-1](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/2f75dca6-5d7a-4134-98df-567ba7293c0d) |
 
 
 ## 7.Résultats expérimentaux 
