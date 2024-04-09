@@ -118,6 +118,7 @@ La fonction ```cv2.HoughCircle```s est utilisée pour détecter les cercles dans
 Les coordonnées des cercles détectés, représentant les centres des pièces de monnaie, sont récupérées et utilisées pour estimer le nombre de pièces dans l'image.
 
 Les coordonnées et les rayons retournés par la fonction ```cv2.HoughCircle``` sont ensuite utilisés pour délimiter les pièces de monnaie.
+Vous pouvez trouver le code dans le fichier [script.py](script.py).
 
 ## Résultats expérimentaux 
 ### 1. Approche segmentation régionale avec la technique de binarisation d'Otsu
@@ -170,3 +171,30 @@ Malgré les bons résultats, il est à noter que certaines erreurs de detection 
 | Approche basée sur la méthode d'Otsu   | 63.04%     | 2.402| 34.424| 5.867 | - Méthode rapide et efficace pour la binarisation des images, ce qui permet une séparation claire entre les pièces de monnaie et l'arrière-plan. - Implémentation simple avec détection des contours. | - Précision de 63.04% indique une performance relativement faible. - Méthode sensible aux variations de contraste et d'éclairage dans les images. |
 | Approche basée sur la transformée de Hough circulaire | 83.7% | 0.554| 3.902| 1.975| - Précision significativement plus élevée de 83.7%. - La transformée de Hough circulaire est robuste aux variations de contraste et d'éclairage, ce qui améliore la fiabilité de la détection des pièces de monnaie. | - La méthode peut nécessiter des ajustements de paramètres pour optimiser la détection des cercles dans les images. |
 
+La méthode basée sur la transformée de Hough circulaire surpasse clairement la méthode basée sur Otsu en termes de précision de détection des pièces de monnaie avec 83% d’accuracy. Ce qui en fait un choix plus favorable pour les applications nécessitant une détection précise des pièces de monnaie.
+
+
+## Méthodes de reconnaissance de piece afin de calculer la somme en euros
+
+Notre méthode pour compter la somme totale de pièces dans l'image consiste à utiliser la fonction calculate_amount. Cette fonction prend en entrée une liste de cercles détectés dans l'image, obtenue après la réalisation de la détection de pièces à l'aide de la méthode 2 (basée sur HoughCircles) présentée précédemment, ainsi que la classe de la plus grande pièce de monnaie, extraite du fichier CSV contenant des annotations manuelles.
+
+Pour chaque cercle détecté, la fonction calcule d'abord le rapport entre le rayon du cercle et le rayon de la plus grande pièce de monnaie. En utilisant ce rapport, elle détermine ensuite la classe de pièce de monnaie la plus proche en taille pour chaque cercle détecté. Cette étape est réalisée en comparant les rayons des pièces de monnaie réelles avec le rayon estimé de chaque cercle détecté.
+
+Enfin, la fonction totalise la valeur de chaque pièce de monnaie détectée en fonction de sa classe et retourne le montant total en euros arrondi à deux décimales.
+
+
+| Image 1 | Image 2 | Image 3 |
+|---------|---------|---------|
+| ![Description de l'image 1](chemin/vers/image1.jpg) | ![Description de l'image 2](chemin/vers/image2.jpg) |![Description de l'image 2](chemin/vers/image2.jpg) |
+
+
+## Résultats expérimentaux 
+
+Pour évaluer notre méthode, nous avons exclu les images ne contenant qu'une seule pièce afin de ne pas biaiser les résultats, car dans ces cas, la pièce unique est toujours identifiée comme la plus grande. Nous avons donc testé notre méthode sur les images contenant plusieurs pièces, soit un total de 64 images sur les 92 initiales. Voici les résultats obtenus :
+
+
+Ces résultats démontrent la précision de notre méthode dans la détection et l'estimation des valeurs des pièces de monnaie dans des images contenant plusieurs pièces.
+
+| Métrique                  | Mean Absolute Error (MAE)  | Mean Squared Error (MSE)  | Root Mean Squared Error (RMSE) |
+|---------------------------|----------------------------|---------------------------|--------------------------------|
+| Valeur                    | 0.76                       |  1.50                     | 1.22                           |
