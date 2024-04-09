@@ -1,6 +1,6 @@
 # Détection et Identification Automatiques de Pièces de Monnaie
 
-## Introduction
+## 1.Introduction
 
 La détection et l'identification automatiques de pièces de monnaie constituent un défi important dans de nombreuses applications, telles que la gestion financière automatisée et le contrôle de la production industrielle. Dans le cadre de ce projet, nous avons entrepris de concevoir un système capable de compter le montant total en euros représenté par des pièces à partir d'une image donnée en entrée.
 
@@ -8,7 +8,7 @@ Pour atteindre cet objectif, nous avons exploré deux approches différentes : u
 
 Dans cette étude, nous présenterons en détail ces deux approches, en décrivant leur mise en œuvre, leurs performances et leurs limites. Nous discuterons également des implications de nos résultats et des pistes d'amélioration possibles pour des systèmes futurs de détection et d'identification de pièces de monnaie.
 
-## Base de données
+## 2.Base de données
 
 Les images ont été prises de différentes manières pour refléter les conditions réelles auxquelles le système pourrait être confronté. Certaines ne contiennent qu'une seule pièce de monnaie, tandis que d'autres en contiennent plusieurs (collés entre eux ou séparés), ce qui permet de tester la capacité du système à gérer des situations où les pièces se chevauchent ou sont très proches les unes des autres.
 
@@ -27,65 +27,65 @@ En conséquence, certains prétraitements sont nécessaires pour corriger ces im
 
 </center>
 
-## Méthodes d'Évaluation
+## 3.Méthodes d'Évaluation
 
-### Évaluation pour les méthodologies de comptage de pièces
+### 3.1 Évaluation pour les méthodologies de comptage de pièces
 
 L'évaluation des méthodologies de comptage de pièces peut être réalisée en utilisant plusieurs mesures de performance. Les mesures utilisées incluent :
 
-#### 1. Erreur Absolue Moyenne (MAE)
+#### 3.1.1. Erreur Absolue Moyenne (MAE)
 
 La MAE mesure la moyenne des écarts absolus entre les valeurs prédites (le nombre de pièces détecté pour une seule image) et les valeurs réelles (le vrai nombre de pièces pour une seule image).
 
 Formule :
 ```MAE = (1 / n) * Σ|i=1 à n|(|y_pred[i] - y_true[i]|)```
 
-#### 2. Erreur Quadratique Moyenne (MSE)
+#### 3.1.2. Erreur Quadratique Moyenne (MSE)
 
 Le MSE est la moyenne des carrés des écarts entre les valeurs prédites (le nombre de pièces détecté pour une seule image) et les valeurs réelles (le vrai nombre de pièces pour une seule image).
 
 Formule :
 ```MSE = (1 / n) * Σ|i=1 à n|(y_pred[i] - y_true[i])²```
 
-#### 3. Racine de l'Erreur Quadratique Moyenne (RMSE)
+#### 3.1.3. Racine de l'Erreur Quadratique Moyenne (RMSE)
 
 Le RMSE est la racine carrée du MSE, ce qui donne une mesure de l'écart moyen entre les valeurs prédites (le nombre de pièces détecté pour une seule image) et les valeurs réelles (le vrai nombre de pièces pour une seule image).
 
 Formule :
 ```RMSE = √MSE```
 
-#### 4. Précision (ACC)
+#### 3.1.4. Précision (ACC)
 
 La précision est trouvé en calculant la proportion des images avec le nombre de pièces correctement prédit sur le nombre total d'images.
 
 Formule :
 ```ACC = (Nombre d'images avec le nombre de pièces correctement prédit) / (Nombre nombre total d'image)```
 
-### Méthodologie d'évaluation de la somme en euros
+### 3.2 Méthodologie d'évaluation de la somme en euros
 
 L'évaluation de la somme en euros comptée peut également être effectuée à l'aide de plusieurs mesures de performance similaires à celles utilisées pour le comptage de pièces:
 
-#### 1. Erreur Absolue Moyenne (MAE)
+#### 3.2.1. Erreur Absolue Moyenne (MAE)
 
 Formule :
 ```MAE = (1 / n) * Σ|i=1 à n|(|somme_pred[i] - somme_true[i]|)```
 
-#### 2. Erreur Quadratique Moyenne (MSE)
+#### 3.2.2. Erreur Quadratique Moyenne (MSE)
 
 Formule :
 ```MSE = (1 / n) * Σ|i=1 à n|(somme_pred[i] - somme_true[i])²```
 
-#### 3. Racine de l'Erreur Quadratique Moyenne (RMSE)
+#### 3.2.3. Racine de l'Erreur Quadratique Moyenne (RMSE)
 
 Formule :
 ```RMSE = √MSE```
 
 
-## Méthodes de comptage des pièces de monnaie
+## 4. Méthodes de comptage des pièces de monnaie
 
 Dans cette étude, nous avons adopté deux approches distinctes :
 
-  ### 1. Approche segmentation régionale avec la technique de binarisation d'Otsu
+  ### 4.1. Approche segmentation régionale avec la technique de binarisation d'Otsu
 
 Pour commencer, nos images sont soumises à un processus de prétraitement pour améliorer leur qualité. 
 L'image est chargée, puis les reflets de flash potentiellement présents sont réduits pour améliorer la qualité de l'image. Ensuite, l'image est redimensionnée en conservant son rapport d'aspect pour garantir une manipulation appropriée lors des étapes suivantes (afin de prévenir toute altération de la forme de la pièce).
@@ -106,7 +106,7 @@ Les pièces de monnaie détectées sont filtrées en fonction de leur taille de 
 D'autres méthode et prétraitement en étaient testées tel que l'égalisation d'histogramme adaptatif CLAHE, la dilatation circulaire  dans le but de renforcer la détection des contours des pièces de monnaie...etc, mais on n'a gardé que ceux qui donnent le meilleur résultat.
 
 Vous pouvez trouver le code dans le fichier [script.py](script.py).
-  ### 2. Approche basée détection de contours avec la transformée de Hough pour les cercles
+  ### 4.2. Approche basée détection de contours avec la transformée de Hough pour les cercles
 
 Tout d'abord, l'image est redimensionnée pour garantir qu'elle ait une taille maximale de 500 pixels dans la plupart des cas. Cependant, si l'image semble être en mode plein écran 16:9, elle est redimensionnée à une taille maximale de 800 pixels. Cette étape est cruciale pour éviter la compression de l'image, ce qui pourrait compliquer la détection des cercles. Garder des images originales avec une taille initiale grande peut conduire à des erreurs de détection dues à une complexité accrue dans le traitement et à une augmentation des temps de calcul, surtout si les détails superflus ne sont pas pertinents pour la tâche de détection des cercles.
 Il est également important de noter, afin de garantir une certaine uniformité dans les données, si la forme initiale de l'image est égale à ```(3024, 4032, 3)```, alors l'image est inversée à l'aide de la fonction ```flip_image``` avant de passer au redimensionnement.
@@ -118,10 +118,11 @@ La fonction ```cv2.HoughCircle```s est utilisée pour détecter les cercles dans
 Les coordonnées des cercles détectés, représentant les centres des pièces de monnaie, sont récupérées et utilisées pour estimer le nombre de pièces dans l'image.
 
 Les coordonnées et les rayons retournés par la fonction ```cv2.HoughCircle``` sont ensuite utilisés pour délimiter les pièces de monnaie.
+
 Vous pouvez trouver le code dans le fichier [script.py](script.py).
 
-## Résultats expérimentaux 
-### 1. Approche segmentation régionale avec la technique de binarisation d'Otsu
+## 5. Résultats expérimentaux 
+### 5.1. Approche segmentation régionale avec la technique de binarisation d'Otsu
 Après avoir appliqué l'algorithme d'Otsu pour la binarisation de l'image, notre méthode a obtenu une précision de détection de pièces de monnaie de 60,8%. Cette précision a été évaluée en comparant les résultats de notre algorithme avec les annotations manuelles fournies dans le fichier CSV. Voici les résultats de l'évaluation obtenus :
 
 
@@ -150,7 +151,7 @@ Malheureusement, certaines pièces n’ont pas été correctement détectées. (
 
 Il convient de noter que malgré cette précision relativement modérée, notre approche a démontré sa capacité à détecter les pièces de monnaie dans des conditions d'éclairage variables.
 
-### 2. Approche basée détection de contours avec la transformée de Hough pour les cercles
+### 5.2. Approche basée détection de contours avec la transformée de Hough pour les cercles
 
 Après avoir appliqué la transformée de Hough circulaire pour détecter les cercles dans les images, notre méthode a obtenu une précision de détection des pièces de monnaie de 83%. Cette précision a été évaluée en comparant les résultats de notre algorithme avec les annotations manuelles fournies dans le fichier CSV. Les résultats de l'évaluation montrent des performances remarquables, notamment un Mean Absolute Error (MAE) de seulement 0.55, mettant en évidence la précision de la deuxième méthode comparé à la première.
 
@@ -165,7 +166,7 @@ Malgré les bons résultats, il est à noter que certaines erreurs de detection 
 |---------|---------|---------|
 | ![Description de l'image 1](chemin/vers/image1.jpg) | ![Description de l'image 2](chemin/vers/image2.jpg) |![Description de l'image 2](chemin/vers/image2.jpg) |
 
-## Etude comparative des méthodes	
+## 6.Etude comparative des méthodes	
 | Méthode                                | Précision | MAE  | MSE  | RMSE  | Avantages                                                                                     | Limitations                                                                                                               |
 |----------------------------------------|-----------|------|------|------|-----------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
 | Approche basée sur la méthode d'Otsu   | 63.04%     | 2.402| 34.424| 5.867 | - Méthode rapide et efficace pour la binarisation des images, ce qui permet une séparation claire entre les pièces de monnaie et l'arrière-plan. - Implémentation simple avec détection des contours. | - Précision de 63.04% indique une performance relativement faible. - Méthode sensible aux variations de contraste et d'éclairage dans les images. |
@@ -174,7 +175,7 @@ Malgré les bons résultats, il est à noter que certaines erreurs de detection 
 La méthode basée sur la transformée de Hough circulaire surpasse clairement la méthode basée sur Otsu en termes de précision de détection des pièces de monnaie avec 83% d’accuracy. Ce qui en fait un choix plus favorable pour les applications nécessitant une détection précise des pièces de monnaie.
 
 
-## Méthodes de reconnaissance de piece afin de calculer la somme en euros
+## 6.Méthode de reconnaissance de piece afin de calculer la somme en euros
 
 Notre méthode pour compter la somme totale de pièces dans l'image consiste à utiliser la fonction calculate_amount. Cette fonction prend en entrée une liste de cercles détectés dans l'image, obtenue après la réalisation de la détection de pièces à l'aide de la méthode 2 (basée sur HoughCircles) présentée précédemment, ainsi que la classe de la plus grande pièce de monnaie, extraite du fichier CSV contenant des annotations manuelles.
 
@@ -188,7 +189,7 @@ Enfin, la fonction totalise la valeur de chaque pièce de monnaie détectée en 
 | ![Description de l'image 1](chemin/vers/image1.jpg) | ![Description de l'image 2](chemin/vers/image2.jpg) |![Description de l'image 2](chemin/vers/image2.jpg) |
 
 
-## Résultats expérimentaux 
+## 7.Résultats expérimentaux 
 
 Pour évaluer notre méthode, nous avons exclu les images ne contenant qu'une seule pièce afin de ne pas biaiser les résultats, car dans ces cas, la pièce unique est toujours identifiée comme la plus grande. Nous avons donc testé notre méthode sur les images contenant plusieurs pièces, soit un total de 64 images sur les 92 initiales. Voici les résultats obtenus :
 
@@ -200,10 +201,10 @@ un MAE de 0.76 signifie en moyenne une erreur absolue de 0.76 unités dans l'est
 
 Ces résultats démontrent la précision de notre méthode dans la détection et l'estimation des valeurs des pièces de monnaie dans des images contenant plusieurs pièces.
 
-## Limitations et perspectives futures
+## 8. Limitations et perspectives futures
 
 
-## Réalisé par 
+# Réalisé par 
 * ABED Nada-Fatima Zohra
 * REBAI Mohamed Younes
 * BENMEHREZ Dima Sabrine
