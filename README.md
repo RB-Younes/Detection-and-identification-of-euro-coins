@@ -88,7 +88,7 @@ Dans cette étude, nous avons adopté deux approches distinctes :
   ### 4.1. Approche segmentation régionale avec la technique de binarisation d'Otsu
 
 Pour commencer, nos images sont soumises à un processus de prétraitement pour améliorer leur qualité. 
-L'image est chargée, puis les reflets de flash potentiellement présents sont réduits pour améliorer la qualité de l'image. Ensuite, l'image est redimensionnée en conservant son rapport d'aspect pour garantir une manipulation appropriée lors des étapes suivantes (afin de prévenir toute altération de la forme de la pièce).
+L'image est chargée, puis les reflets de flash potentiellement présents sont réduits à l'aide de l'égalisation d'histogramme adaptatif CLAHE pour améliorer la qualité de l'image. Ensuite, l'image est redimensionnée en conservant son rapport d'aspect pour garantir une manipulation appropriée lors des étapes suivantes (afin de prévenir toute altération de la forme de la pièce).
 
 Après cela, la luminosité de l'image est ajustée (en utilisant LUT Tables) pour corriger les variations d'éclairage et garantir une visualisation optimale. En parallèle, les détails indésirables de l'image sont réduits à l'aide de techniques de flou gaussien.
 
@@ -103,7 +103,7 @@ Certains critères de filtrage sont ensuite appliqués pour sélectionner les el
 Les pièces de monnaie détectées sont filtrées en fonction de leur taille de leur forme et de leur positionnement respective, éliminant ainsi les faux positifs et améliorant la précision de la détection au maximum.
 
 **Remarque:** 
-D'autres méthode et prétraitement en étaient testées tel que l'égalisation d'histogramme adaptatif CLAHE, la dilatation circulaire  dans le but de renforcer la détection des contours des pièces de monnaie...etc, mais on n'a gardé que ceux qui donnent le meilleur résultat.
+D'autres méthode et prétraitement en étaient testées tel que la dilatation circulaire  dans le but de renforcer la détection des contours des pièces de monnaie...etc, mais on n'a gardé que ceux qui donnent le meilleur résultat.
 
 Vous pouvez trouver le code dans le fichier [script.py](script.py).
   ### 4.2. Approche basée détection de contours avec la transformée de Hough pour les cercles
