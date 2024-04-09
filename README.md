@@ -182,7 +182,7 @@ Malgré les bons résultats, il est à noter que certaines erreurs de detection 
 La méthode basée sur la transformée de Hough circulaire surpasse clairement la méthode basée sur Otsu en termes de précision de détection des pièces de monnaie avec 83% d’accuracy. Ce qui en fait un choix plus favorable pour les applications nécessitant une détection précise des pièces de monnaie.
 
 
-## 6.Méthode de reconnaissance de piece afin de calculer la somme en euros
+## 7.Méthode de reconnaissance de piece afin de calculer la somme en euros
 
 Notre méthode pour compter la somme totale de pièces dans l'image consiste à utiliser la fonction calculate_amount. Cette fonction prend en entrée une liste de cercles détectés dans l'image, obtenue après la réalisation de la détection de pièces à l'aide de la méthode 2 (basée sur HoughCircles) présentée précédemment, ainsi que la classe de la plus grande pièce de monnaie, extraite du fichier CSV contenant des annotations manuelles.
 
@@ -196,7 +196,7 @@ Enfin, la fonction totalise la valeur de chaque pièce de monnaie détectée en 
 | ![Sans titre](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/c0a0e9a6-7c91-4a96-a0e7-9076facbf9e1) | ![Sans titre-1](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/99ba81ec-1be1-4cb8-9f0c-5f0c15f19259)| ![Sans titre-1](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/2f75dca6-5d7a-4134-98df-567ba7293c0d) |
 
 
-## 7.Résultats expérimentaux 
+## 8.Résultats expérimentaux 
 
 Pour évaluer notre méthode, nous avons exclu les images ne contenant qu'une seule pièce afin de ne pas biaiser les résultats, car dans ces cas, la pièce unique est toujours identifiée comme la plus grande. Nous avons donc testé notre méthode sur les images contenant plusieurs pièces, soit un total de 64 images sur les 92 initiales. Voici les résultats obtenus :
 
@@ -208,7 +208,7 @@ un MAE de 0.76 signifie en moyenne une erreur absolue de 0.76 unités dans l'est
 
 Ces résultats démontrent la précision de notre méthode dans la détection et l'estimation des valeurs des pièces de monnaie dans des images contenant plusieurs pièces.
 
-## 8. Limitations et perspectives futures
+## 9. Limitations et perspectives futures
 
 Notre approche présente certaines limitations qu'il est important de prendre en compte :
 
@@ -219,7 +219,7 @@ Cependant, pour améliorer notre méthode et explorer de nouvelles opportunités
 
 - Tester notre méthode sur une gamme plus large de données, en incluant à la fois des ensembles variés et moins variés pour évaluer son adaptabilité.
 - Continuer à développer notre approche en explorant des stratégies tels que le deep learning(YOLO).
-## 9. Conclusion
+## 10. Conclusion
 
 Ce projet a été un défi stimulant pour nous, au cours duquel nous avons eu l'opportunité de mettre en pratique toutes les techniques que nous avons apprises en classe. Nous avons dû repousser nos limites et mobiliser nos compétences pour relever les défis rencontrés. En traversant ce processus, nous avons acquis une expérience précieuse qui nous servira dans nos projets futurs.
 
