@@ -105,7 +105,8 @@ Les pièces de monnaie détectées sont filtrées en fonction de leur taille de 
 **Remarque:** 
 D'autres méthode et prétraitement en étaient testées tel que la dilatation circulaire  dans le but de renforcer la détection des contours des pièces de monnaie...etc, mais on n'a gardé que ceux qui donnent le meilleur résultat.
 
-Vous pouvez trouver le code dans le fichier [script.py](script.py).
+Vous pouvez trouver le code dans [Colab notebooks/Approche_N°01_Otsu_Projet_Image.ipynb](Colab%20notebooks/Approche_N%C2%B001_Otsu_Projet_Image.ipynb).
+
   ### 4.2. Approche basée détection de contours avec la transformée de Hough pour les cercles
 
 Tout d'abord, l'image est redimensionnée pour garantir qu'elle ait une taille maximale de 500 pixels dans la plupart des cas. Cependant, si l'image semble être en mode plein écran 16:9, elle est redimensionnée à une taille maximale de 800 pixels. Cette étape est cruciale pour éviter la compression de l'image, ce qui pourrait compliquer la détection des cercles. Garder des images originales avec une taille initiale grande peut conduire à des erreurs de détection dues à une complexité accrue dans le traitement et à une augmentation des temps de calcul, surtout si les détails superflus ne sont pas pertinents pour la tâche de détection des cercles.
@@ -119,7 +120,7 @@ Les coordonnées des cercles détectés, représentant les centres des pièces d
 
 Les coordonnées et les rayons retournés par la fonction ```cv2.HoughCircle``` sont ensuite utilisés pour délimiter les pièces de monnaie.
 
-Vous pouvez trouver le code dans le fichier [script.py](script.py).
+Vous pouvez trouver le code dans [Colab notebooks/Approche_N°02_Hough_Projet_Image.ipynb](Colab%20notebooks/Approche_N%C2%B002_Hough_Projet_Image.ipynb).
 
 ## 5. Résultats expérimentaux 
 ### 5.1. Approche segmentation régionale avec la technique de binarisation d'Otsu
@@ -195,7 +196,7 @@ Enfin, la fonction totalise la valeur de chaque pièce de monnaie détectée en 
 |---------|---------|---------|
 | ![Sans titre](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/c0a0e9a6-7c91-4a96-a0e7-9076facbf9e1) | ![Sans titre-1](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/99ba81ec-1be1-4cb8-9f0c-5f0c15f19259)| ![Sans titre-1](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/2f75dca6-5d7a-4134-98df-567ba7293c0d) |
 
-
+Vous pouvez trouver le code dans  [Colab notebooks/La_somme_en_euro_Projet_Image.ipynb](Colab%20notebooks/La_somme_en_euro_Projet_Image.ipynb).
 ## 8.Résultats expérimentaux 
 
 Pour évaluer notre méthode, nous avons exclu les images ne contenant qu'une seule pièce afin de ne pas biaiser les résultats, car dans ces cas, la pièce unique est toujours identifiée comme la plus grande. Nous avons donc testé notre méthode sur les images contenant plusieurs pièces, soit un total de 64 images sur les 92 initiales. Voici les résultats obtenus :
