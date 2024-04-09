@@ -137,17 +137,16 @@ Ci-dessous certains résultats correctement détectés.
 
 | Image 1 | Image 2 |
 |---------|---------|
-| ![Description de l'image 1](chemin/vers/image1.jpg) | ![Description de l'image 2](chemin/vers/image2.jpg) |
+| ![Sans titre](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/d5d184d4-c6e3-4e60-bae0-e77d967e04e3) | ![Sans titre-1](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/1ac28563-5a3b-4177-ab7b-24867fd681f4) |
 | Image 3 | Image 4 |
-| ![Description de l'image 3](chemin/vers/image3.jpg) | ![Description de l'image 4](chemin/vers/image4.jpg) |
+| ![Sans titre](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/5548b278-eb47-4c1e-a95f-39ff2d59160c) | ![Sans titre-1](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/897a1ff1-8225-4b8e-a64b-13da152a3c4b) |
 
 Malheureusement, certaines pièces n’ont pas été correctement détectées. (Voir les figures ci-dessous).
 
 | Image 1 | Image 2 |
 |---------|---------|
-| ![Description de l'image 1](chemin/vers/image1.jpg) | ![Description de l'image 2](chemin/vers/image2.jpg) |
-| Image 3 | Image 4 |
-| ![Description de l'image 3](chemin/vers/image3.jpg) | ![Description de l'image 4](chemin/vers/image4.jpg) |
+| ![Sans titre](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/63b04856-344c-49ac-a998-386d82b3d8d1) | ![Sans titre-1](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/d8c20379-452a-41c5-ab6b-31357ae20a82)|
+
 
 Il convient de noter que malgré cette précision relativement modérée, notre approche a démontré sa capacité à détecter les pièces de monnaie dans des conditions d'éclairage variables.
 
@@ -159,12 +158,20 @@ Après avoir appliqué la transformée de Hough circulaire pour détecter les ce
 |---------------------------|----------------------------|---------------------------|--------------------------------|-----------|
 | Valeur                    | 0.55                       | 3.90                      | 1.98                           | 83.70 %   |
 
+
+
+| Image 1 | Image 2 |
+|---------|---------|
+| ![Sans titre](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/0278d1bd-882c-4730-ab7b-801811246dd9) | ![Sans titre-1](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/dd7d0b1c-5ac8-4043-ac04-977a9fd68e04)|
+| Image 3 | Image 4 |
+| ![Sans titre](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/b0e6df0a-c114-41ec-8357-9d7efa124bda) | ![Sans titre-1](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/479bd4b1-a661-41ce-a623-30a8c41ee82d) |
+
 Malgré les bons résultats, il est à noter que certaines erreurs de detection ont été identifiées lors de la comparaison des prédictions avec les valeurs réelles, soulignant ainsi la nécessité d'une analyse approfondie des cas où le système a rencontré des difficultés. Ci-dessous, nous présentons quelques exemples d'images avec erreurs.
 
 
 | Image 1 | Image 2 | Image 3 |
 |---------|---------|---------|
-| ![Description de l'image 1](chemin/vers/image1.jpg) | ![Description de l'image 2](chemin/vers/image2.jpg) |![Description de l'image 2](chemin/vers/image2.jpg) |
+| ![Sans titre-1](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/19014728-3c0f-4aaf-9703-5283cb3194b6) | ![Sans titre-1](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/9883a3e8-8b2f-443b-a8b6-94eb66f49902) |![Sans titre](https://github.com/RB-Younes/Detection-and-identification-of-euro-coins/assets/108153787/fb8263a6-51cc-4c94-9e18-4b36a13f4e56) |
 
 ## 6.Etude comparative des méthodes	
 | Méthode                                | Précision | MAE  | MSE  | RMSE  | Avantages                                                                                     | Limitations                                                                                                               |
