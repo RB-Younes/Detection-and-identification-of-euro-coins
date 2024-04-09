@@ -17,12 +17,15 @@ De plus, les images ont été prises dans des conditions d'éclairage variables,
 Enfin, le fond de certaines images n'est pas uniforme, ce qui simule des situations où les pièces sont posées sur des surfaces avec des motifs ou des textures diverses.
 
 En conséquence, certains prétraitements sont nécessaires pour corriger ces imperfections et améliorer la qualité des images avant l'analyse par le système de détection.
+<center>
 
 | Image 1 | Image 2 |
 |---------|---------|
 | ![Description de l'image 1](chemin/vers/image1.jpg) | ![Description de l'image 2](chemin/vers/image2.jpg) |
 | Image 3 | Image 4 |
 | ![Description de l'image 3](chemin/vers/image3.jpg) | ![Description de l'image 4](chemin/vers/image4.jpg) |
+
+</center>
 
 
 
