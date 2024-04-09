@@ -149,9 +149,24 @@ Malheureusement, certaines pièces n’ont pas été correctement détectées. (
 
 Il convient de noter que malgré cette précision relativement modérée, notre approche a démontré sa capacité à détecter les pièces de monnaie dans des conditions d'éclairage variables.
 
-### 1. Approche segmentation régionale avec la technique de binarisation d'Otsu
+### 2. Approche basée détection de contours avec la transformée de Hough pour les cercles
+
+Après avoir appliqué la transformée de Hough circulaire pour détecter les cercles dans les images, notre méthode a obtenu une précision de détection des pièces de monnaie de 83%. Cette précision a été évaluée en comparant les résultats de notre algorithme avec les annotations manuelles fournies dans le fichier CSV. Les résultats de l'évaluation montrent des performances remarquables, notamment un Mean Absolute Error (MAE) de seulement 0.55, mettant en évidence la précision de la deuxième méthode comparé à la première.
 
 | Métrique                  | Mean Absolute Error (MAE)  | Mean Squared Error (MSE)  | Root Mean Squared Error (RMSE) | Accuracy  |
 |---------------------------|----------------------------|---------------------------|--------------------------------|-----------|
 | Valeur                    | 0.55                       | 3.90                      | 1.98                           | 83.70 %   |
+
+Malgré les bons résultats, il est à noter que certaines erreurs de detection ont été identifiées lors de la comparaison des prédictions avec les valeurs réelles, soulignant ainsi la nécessité d'une analyse approfondie des cas où le système a rencontré des difficultés. Ci-dessous, nous présentons quelques exemples d'images avec erreurs.
+
+
+| Image 1 | Image 2 | Image 3 |
+|---------|---------|---------|
+| ![Description de l'image 1](chemin/vers/image1.jpg) | ![Description de l'image 2](chemin/vers/image2.jpg) |![Description de l'image 2](chemin/vers/image2.jpg) |
+
+## Etude comparative des méthodes	
+| Méthode                                | Précision | MAE  | MSE  | RMSE  | Avantages                                                                                     | Limitations                                                                                                               |
+|----------------------------------------|-----------|------|------|------|-----------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| Approche basée sur la méthode d'Otsu   | 63.04%     | 2.402| 34.424| 5.867 | - Méthode rapide et efficace pour la binarisation des images, ce qui permet une séparation claire entre les pièces de monnaie et l'arrière-plan. - Implémentation simple avec détection des contours. | - Précision de 63.04% indique une performance relativement faible. - Méthode sensible aux variations de contraste et d'éclairage dans les images. |
+| Approche basée sur la transformée de Hough circulaire | 83.7% | 0.554| 3.902| 1.975| - Précision significativement plus élevée de 83.7%. - La transformée de Hough circulaire est robuste aux variations de contraste et d'éclairage, ce qui améliore la fiabilité de la détection des pièces de monnaie. | - La méthode peut nécessiter des ajustements de paramètres pour optimiser la détection des cercles dans les images. |
 
