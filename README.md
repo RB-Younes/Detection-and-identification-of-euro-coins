@@ -98,7 +98,7 @@ Pour garantir une binarisation correcte, la couleur majoritaire de l'image seuil
 
 Après la binarisation, l'image est soumise à une détection de contours à l'aide de l'opérateur de Canny pour identifier les bords distincts des objets présents dans l'image. La détection précise des contours est essentielle pour délimiter correctement les pièces dans l'image. Une fois les contours détectés, des ellipses sont ajustées aux contours des pièces de monnaie à l'aide de la fonction ```fitEllipse```. Et ce, pour modéliser les formes des pièces dans l'image, permettant ainsi de les caractériser et de les identifier efficacement.
 
-Certains critères de filtrage sont ensuite appliqués pour sélectionner les ellipses qui correspondent le mieux aux pièces de monnaie (tels que la taille minimale des ellipses et le rapport d'inertie, qui permettent de distinguer les pièces des autres objets).
+Certains critères sont ensuite appliqués pour sélectionner les ellipses qui correspondent le mieux aux pièces de monnaie (tels que la taille minimale des ellipses et le rapport d'inertie, qui permettent de distinguer les pièces des autres objets).
 
 Les pièces de monnaie détectées sont filtrées en fonction de leur taille de leur forme et de leur positionnement respective, éliminant ainsi les faux positifs et améliorant la précision de la détection au maximum.
 
