@@ -27,5 +27,94 @@ En conséquence, certains prétraitements sont nécessaires pour corriger ces im
 
 </center>
 
+## Méthodes d'Évaluation
+
+### Évaluation pour les méthodologies de comptage de pièces
+
+L'évaluation des méthodologies de comptage de pièces peut être réalisée en utilisant plusieurs mesures de performance. Les mesures utilisées incluent :
+
+#### 1. Erreur Absolue Moyenne (MAE)
+
+La MAE mesure la moyenne des écarts absolus entre les valeurs prédites (le nombre de pièces détecté pour une seule image) et les valeurs réelles (le vrai nombre de pièces pour une seule image).
+
+Formule :
+```MAE = (1 / n) * Σ|i=1 à n|(|y_pred[i] - y_true[i]|)```
+
+#### 2. Erreur Quadratique Moyenne (MSE)
+
+Le MSE est la moyenne des carrés des écarts entre les valeurs prédites (le nombre de pièces détecté pour une seule image) et les valeurs réelles (le vrai nombre de pièces pour une seule image).
+
+Formule :
+```MSE = (1 / n) * Σ|i=1 à n|(y_pred[i] - y_true[i])²```
+
+#### 3. Racine de l'Erreur Quadratique Moyenne (RMSE)
+
+Le RMSE est la racine carrée du MSE, ce qui donne une mesure de l'écart moyen entre les valeurs prédites (le nombre de pièces détecté pour une seule image) et les valeurs réelles (le vrai nombre de pièces pour une seule image).
+
+Formule :
+```RMSE = √MSE```
+
+#### 4. Précision (ACC)
+
+La précision est trouvé en calculant la proportion des images avec le nombre de pièces correctement prédit sur le nombre total d'images.
+
+Formule :
+```ACC = (Nombre d'images avec le nombre de pièces correctement prédit) / (Nombre nombre total d'image)```
+
+### Méthodologie d'évaluation de la somme en euros
+
+L'évaluation de la somme en euros comptée peut également être effectuée à l'aide de plusieurs mesures de performance similaires à celles utilisées pour le comptage de pièces:
+
+#### 1. Erreur Absolue Moyenne (MAE)
+
+Formule :
+```MAE = (1 / n) * Σ|i=1 à n|(|somme_pred[i] - somme_true[i]|)```
+
+#### 2. Erreur Quadratique Moyenne (MSE)
+
+Formule :
+```MSE = (1 / n) * Σ|i=1 à n|(somme_pred[i] - somme_true[i])²```
+
+#### 3. Racine de l'Erreur Quadratique Moyenne (RMSE)
+
+Formule :
+```RMSE = √MSE```
+
+
+## Méthodologie
+
+Dans cette étude, nous avons adopté deux approches distinctes :
+
+  ### 1. Approche segmentation régionale avec la technique de binarisation d'Otsu
+
+Pour commencer, nos images sont soumises à un processus de prétraitement pour améliorer leur qualité. 
+L'image est chargée, puis les reflets de flash potentiellement présents sont réduits pour améliorer la qualité de l'image. Ensuite, l'image est redimensionnée en conservant son rapport d'aspect pour garantir une manipulation appropriée lors des étapes suivantes (afin de prévenir toute altération de la forme de la pièce).
+
+Après cela, la luminosité de l'image est ajustée (en utilisant LUT Tables) pour corriger les variations d'éclairage et garantir une visualisation optimale. En parallèle, les détails indésirables de l'image sont réduits à l'aide de techniques de flou gaussien.
+
+Une fois ces étapes de prétraitement effectuées, l'image est convertie en niveaux de gris. Ensuite, l'algorithme d'Otsu est appliqué pour déterminer automatiquement le seuil optimal de binarisation. Cela permet de segmenter l'image en deux classes distinctes : les pixels représentant les pièces de monnaie et ceux représentant l'arrière-plan.
+
+Pour garantir une binarisation correcte, la couleur majoritaire de l'image seuillée est vérifiée. Si nécessaire, l'image est inversée pour que le fond soit noir, facilitant ainsi la détection des pièces de monnaie dans des conditions variées.
+
+Après la binarisation, l'image est soumise à une détection de contours à l'aide de l'opérateur de Canny pour identifier les bords distincts des objets présents dans l'image. La détection précise des contours est essentielle pour délimiter correctement les pièces dans l'image. Une fois les contours détectés, des ellipses sont ajustées aux contours des pièces de monnaie à l'aide de la fonction ```fitEllipse```. Et ce, pour modéliser les formes des pièces dans l'image, permettant ainsi de les caractériser et de les identifier efficacement.
+
+Certains critères de filtrage sont ensuite appliqués pour sélectionner les ellipses qui correspondent le mieux aux pièces de monnaie (tels que la taille minimale des ellipses et le rapport d'inertie, qui permettent de distinguer les pièces des autres objets).
+
+Les pièces de monnaie détectées sont filtrées en fonction de leur taille de leur forme et de leur positionnement respective, éliminant ainsi les faux positifs et améliorant la précision de la détection au maximum.
+
+**Remarque:** 
+D'autres méthode et prétraitement en étaient testées tel que l'égalisation d'histogramme adaptatif CLAHE, la dilatation circulaire  dans le but de renforcer la détection des contours des pièces de monnaie...etc, mais on n'a gardé que ceux qui donnent le meilleur résultat.
+
+Vous pouvez trouver le code dans le fichier [script.py](script.py).
+  ### 2. Approche basée détection de contours avec la transformée de Hough pour les cercles
+
+Tout d'abord, l'image est redimensionnée pour garantir qu'elle ait une taille maximale de 500 pixels dans la plupart des cas. Cependant, si l'image semble être en mode plein écran 16:9, elle est redimensionnée à une taille maximale de 800 pixels. Cette étape est cruciale pour éviter la compression de l'image, ce qui pourrait compliquer la détection des cercles.
+
+L'image redimensionnée est convertie en niveaux de gris pour simplifier le traitement. Ensuite, un flou gaussien est appliqué pour réduire le bruit et améliorer la qualité de l'image.
+
+La fonction cv2.HoughCircles est utilisée pour détecter les cercles dans l'image en niveaux de gris. Des paramètres spécifiques sont ajustés pour contrôler la sensibilité de la détection et les tailles de cercles à rechercher. Les coordonnées des cercles détectés sont ensuite renvoyées après avoir été ajustées pour correspondre à l'échelle de l'image d'origine.
+
+Les coordonnées des cercles détectés, représentant les centres des pièces de monnaie, sont récupérées et utilisées pour estimer le nombre de pièces dans l'image.
+
 
 
