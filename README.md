@@ -210,6 +210,19 @@ Ces résultats démontrent la précision de notre méthode dans la détection et
 
 ## 8. Limitations et perspectives futures
 
+Notre approche présente certaines limitations qu'il est important de prendre en compte :
+
+- Actuellement, notre méthode est principalement testée sur des ensembles de données spécifiques, ce qui peut limiter sa généralisation.
+- Les performances de notre méthode peuvent varier en fonction de la nature et de la taille des données utilisées.
+
+Cependant, pour améliorer notre méthode et explorer de nouvelles opportunités, nous envisageons les perspectives suivantes :
+
+- Tester notre méthode sur une gamme plus large de données, en incluant à la fois des ensembles variés et moins variés pour évaluer son adaptabilité.
+- Continuer à développer notre approche en explorant des stratégies tels que le deep learning(YOLO).
+## 9. Conclusion
+
+Ce projet a été un défi stimulant pour nous, au cours duquel nous avons eu l'opportunité de mettre en pratique toutes les techniques que nous avons apprises en classe. Nous avons dû repousser nos limites et mobiliser nos compétences pour relever les défis rencontrés. En traversant ce processus, nous avons acquis une expérience précieuse qui nous servira dans nos projets futurs.
+
 
 # Réalisé par 
 * ABED Nada-Fatima Zohra
