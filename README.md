@@ -81,7 +81,7 @@ Formule :
 ```RMSE = √MSE```
 
 
-## Méthodologie
+## Méthodes de comptage des pièces de monnaie
 
 Dans cette étude, nous avons adopté deux approches distinctes :
 
@@ -123,13 +123,35 @@ Les coordonnées et les rayons retournés par la fonction ```cv2.HoughCircle``` 
 ### 1. Approche segmentation régionale avec la technique de binarisation d'Otsu
 Après avoir appliqué l'algorithme d'Otsu pour la binarisation de l'image, notre méthode a obtenu une précision de détection de pièces de monnaie de 60,8%. Cette précision a été évaluée en comparant les résultats de notre algorithme avec les annotations manuelles fournies dans le fichier CSV. Voici les résultats de l'évaluation obtenus :
 
-| Métrique                          | Valeur   |
-|-----------------------------------|----------|
-| Mean Absolute Error (MAE)         | 2.402    |
-| Mean Squared Error (MSE)          | 34.424   |
-| Root Mean Squared Error (RMSE)    | 5.867    |
-| Accuracy                          | 63.043 % |
+
+| Métrique                  | Mean Absolute Error (MAE) | Mean Squared Error (MSE) | Root Mean Squared Error (RMSE) | Accuracy  |
+|---------------------------|----------------------------|---------------------------|--------------------------------|-----------|
+| Valeur                    | 2.40                       | 34.42                     | 5.87                           | 63.04 %   |
+
 
 Ces valeurs fournissent une mesure quantitative de la performance de notre méthode de détection de pièces de monnaie après l'application de l'algorithme d'Otsu.
 
+Ci-dessous certains résultats correctement détectés.
+
+| Image 1 | Image 2 |
+|---------|---------|
+| ![Description de l'image 1](chemin/vers/image1.jpg) | ![Description de l'image 2](chemin/vers/image2.jpg) |
+| Image 3 | Image 4 |
+| ![Description de l'image 3](chemin/vers/image3.jpg) | ![Description de l'image 4](chemin/vers/image4.jpg) |
+
+Malheureusement, certaines pièces n’ont pas été correctement détectées. (Voir les figures ci-dessous).
+
+| Image 1 | Image 2 |
+|---------|---------|
+| ![Description de l'image 1](chemin/vers/image1.jpg) | ![Description de l'image 2](chemin/vers/image2.jpg) |
+| Image 3 | Image 4 |
+| ![Description de l'image 3](chemin/vers/image3.jpg) | ![Description de l'image 4](chemin/vers/image4.jpg) |
+
+Il convient de noter que malgré cette précision relativement modérée, notre approche a démontré sa capacité à détecter les pièces de monnaie dans des conditions d'éclairage variables.
+
+### 1. Approche segmentation régionale avec la technique de binarisation d'Otsu
+
+| Métrique                  | Mean Absolute Error (MAE)  | Mean Squared Error (MSE)  | Root Mean Squared Error (RMSE) | Accuracy  |
+|---------------------------|----------------------------|---------------------------|--------------------------------|-----------|
+| Valeur                    | 0.55                       | 3.90                      | 1.98                           | 83.70 %   |
 
