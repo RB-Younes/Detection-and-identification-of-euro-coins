@@ -192,9 +192,19 @@ Enfin, la fonction totalise la valeur de chaque pièce de monnaie détectée en 
 
 Pour évaluer notre méthode, nous avons exclu les images ne contenant qu'une seule pièce afin de ne pas biaiser les résultats, car dans ces cas, la pièce unique est toujours identifiée comme la plus grande. Nous avons donc testé notre méthode sur les images contenant plusieurs pièces, soit un total de 64 images sur les 92 initiales. Voici les résultats obtenus :
 
-
-Ces résultats démontrent la précision de notre méthode dans la détection et l'estimation des valeurs des pièces de monnaie dans des images contenant plusieurs pièces.
-
 | Métrique                  | Mean Absolute Error (MAE)  | Mean Squared Error (MSE)  | Root Mean Squared Error (RMSE) |
 |---------------------------|----------------------------|---------------------------|--------------------------------|
 | Valeur                    | 0.76                       |  1.50                     | 1.22                           |
+
+un MAE de 0.76 signifie en moyenne une erreur absolue de 0.76 unités dans l'estimation de la valeur des pièces de monnaie.
+
+Ces résultats démontrent la précision de notre méthode dans la détection et l'estimation des valeurs des pièces de monnaie dans des images contenant plusieurs pièces.
+
+## Limitations et perspectives futures
+
+
+## Réalisé par 
+* ABED Nada-Fatima Zohra
+* REBAI Mohamed Younes
+* BENMEHREZ Dima Sabrine
+
