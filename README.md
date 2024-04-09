@@ -108,13 +108,28 @@ D'autres méthode et prétraitement en étaient testées tel que l'égalisation 
 Vous pouvez trouver le code dans le fichier [script.py](script.py).
   ### 2. Approche basée détection de contours avec la transformée de Hough pour les cercles
 
-Tout d'abord, l'image est redimensionnée pour garantir qu'elle ait une taille maximale de 500 pixels dans la plupart des cas. Cependant, si l'image semble être en mode plein écran 16:9, elle est redimensionnée à une taille maximale de 800 pixels. Cette étape est cruciale pour éviter la compression de l'image, ce qui pourrait compliquer la détection des cercles.
+Tout d'abord, l'image est redimensionnée pour garantir qu'elle ait une taille maximale de 500 pixels dans la plupart des cas. Cependant, si l'image semble être en mode plein écran 16:9, elle est redimensionnée à une taille maximale de 800 pixels. Cette étape est cruciale pour éviter la compression de l'image, ce qui pourrait compliquer la détection des cercles. Garder des images originales avec une taille initiale grande peut conduire à des erreurs de détection dues à une complexité accrue dans le traitement et à une augmentation des temps de calcul, surtout si les détails superflus ne sont pas pertinents pour la tâche de détection des cercles.
+Il est également important de noter, afin de garantir une certaine uniformité dans les données, si la forme initiale de l'image est égale à ```(3024, 4032, 3)```, alors l'image est inversée à l'aide de la fonction ```flip_image``` avant de passer au redimensionnement.
 
 L'image redimensionnée est convertie en niveaux de gris pour simplifier le traitement. Ensuite, un flou gaussien est appliqué pour réduire le bruit et améliorer la qualité de l'image.
 
-La fonction cv2.HoughCircles est utilisée pour détecter les cercles dans l'image en niveaux de gris. Des paramètres spécifiques sont ajustés pour contrôler la sensibilité de la détection et les tailles de cercles à rechercher. Les coordonnées des cercles détectés sont ensuite renvoyées après avoir été ajustées pour correspondre à l'échelle de l'image d'origine.
+La fonction ```cv2.HoughCircle```s est utilisée pour détecter les cercles dans l'image en niveaux de gris. Des paramètres spécifiques sont ajustés pour contrôler la sensibilité de la détection et les tailles de cercles à rechercher. Les coordonnées des cercles détectés sont ensuite renvoyées après avoir été ajustées pour correspondre à l'échelle de l'image d'origine.
 
 Les coordonnées des cercles détectés, représentant les centres des pièces de monnaie, sont récupérées et utilisées pour estimer le nombre de pièces dans l'image.
 
+Les coordonnées et les rayons retournés par la fonction ```cv2.HoughCircle``` sont ensuite utilisés pour délimiter les pièces de monnaie.
+
+## Résultats expérimentaux 
+### 1. Approche segmentation régionale avec la technique de binarisation d'Otsu
+Après avoir appliqué l'algorithme d'Otsu pour la binarisation de l'image, notre méthode a obtenu une précision de détection de pièces de monnaie de 60,8%. Cette précision a été évaluée en comparant les résultats de notre algorithme avec les annotations manuelles fournies dans le fichier CSV. Voici les résultats de l'évaluation obtenus :
+
+| Métrique                          | Valeur   |
+|-----------------------------------|----------|
+| Mean Absolute Error (MAE)         | 2.402    |
+| Mean Squared Error (MSE)          | 34.424   |
+| Root Mean Squared Error (RMSE)    | 5.867    |
+| Accuracy                          | 63.043 % |
+
+Ces valeurs fournissent une mesure quantitative de la performance de notre méthode de détection de pièces de monnaie après l'application de l'algorithme d'Otsu.
 
 
